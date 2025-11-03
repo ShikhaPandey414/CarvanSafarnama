@@ -1,0 +1,171 @@
+/* -----------------------
+   Intro splash animation
+   ----------------------- */
+#intro{
+  position:fixed;inset:0;
+  background:linear-gradient(135deg,#6dd5fa,#2980b9);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  color:#fff;z-index:9999;
+  animation:introFadeOut 1s ease forwards;
+  animation-delay:3.2s;
+}
+.intro-content{text-align:center;animation:popIn 1.4s ease-out;}
+.intro-logo{font-size:2.6rem;margin:0;opacity:0;animation:fadeSlide 1s ease forwards .4s;}
+.intro-logo span{margin-left:.4rem}
+.intro-tagline{opacity:0;animation:fadeSlide 1s ease forwards 1s;}
+.hidden{opacity:0}
+
+/* keyframes */
+@keyframes fadeSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes introFadeOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+@keyframes popIn{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+
+/* -----------------------
+   Base & container
+   ----------------------- */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg: #f6fbff;
+  --card: #fff;
+  --accent1:#6dd5fa;
+  --accent2:#2980b9;
+  --text:#0f2130;
+  --muted:#6b7a86;
+}
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:linear-gradient(180deg,var(--bg),#e9f6ff 70%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+/* container */
+.container{width:min(1100px,94%);margin:0 auto}
+
+/* -----------------------
+   Header / Nav
+   ----------------------- */
+.site-header{position:sticky;top:0;z-index:60;background:linear-gradient(90deg,var(--accent1) 55%,var(--accent2));box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0;gap:1rem}
+.company-name{color:white;font-weight:700;text-decoration:none;font-size:1.25rem}
+.nav-links{list-style:none;display:flex;gap:.6rem;align-items:center}
+.nav-links a{color:white;text-decoration:none;padding:.4rem .75rem;border-radius:8px}
+.nav-links a:hover{background:rgba(255,255,255,0.08)}
+.mobile-nav-toggle{display:none;background:transparent;border:0;color:white;font-size:1.2rem;cursor:pointer}
+
+/* -----------------------
+   HERO
+   ----------------------- */
+.hero{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:3rem 0;position:relative;overflow:hidden}
+.hero-image{width:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.65);z-index:1}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(0,0,0,0.08));z-index:2}
+.hero-text{position:relative;z-index:3;text-align:center;max-width:800px;padding:2rem;background:rgba(255,255,255,0.04);border-radius:12px;color:#fff}
+.hero-text h1{font-size:2.2rem;margin-bottom:.6rem}
+.lead{color:rgba(255,255,255,0.9)}
+.cta{display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;border-radius:28px;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:white;text-decoration:none;font-weight:600}
+
+/* -----------------------
+   Section title
+   ----------------------- */
+.section{padding:2.4rem 0}
+.section-title{display:block;text-align:center;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;padding:10px;border-radius:12px;margin-bottom:1rem;max-width:720px;margin-left:auto;margin-right:auto}
+
+/* -----------------------
+   ACCORDION GALLERY (Destinations)
+   ----------------------- */
+.accordion-gallery{display:flex;gap:12px;overflow:hidden;align-items:stretch;height:360px;border-radius:12px}
+.gallery-panel{
+  flex:1 1 0%;
+  position:relative;
+  border-radius:10px;
+  display:flex;align-items:flex-end;justify-content:center;
+  transition:all .6s cubic-bezier(.2,.9,.25,1);
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  overflow:hidden;cursor:pointer;background:#ddd;
+}
+.gallery-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s, filter .5s;transform-origin:center center}
+.gallery-panel .panel-label{
+  width:100%;text-align:center;padding:18px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,0.35));
+  color:white;font-weight:700;font-size:1.1rem;
+  transform:translateY(6px);transition:transform .35s;z-index:2;position:relative;
+}
+.gallery-panel.active{flex:4;transform:scale(1.02);box-shadow:0 24px 50px rgba(0,0,0,0.14)}
+.gallery-panel:not(.active){flex:1;filter:grayscale(10%);opacity:.95}
+.gallery-panel.active img{transform:scale(1.12)}
+.hint{color:var(--muted);text-align:center;margin-top:.5rem}
+
+/* -----------------------
+   BOOK SLIDER
+   ----------------------- */
+.books-wrapper{position:relative;display:flex;align-items:center;gap:12px}
+.book-slider{display:flex;gap:20px;overflow:hidden;padding:12px 6px;scroll-behavior:smooth}
+.book{flex:0 0 300px;background:var(--card);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 12px 36px rgba(52,118,180,0.14);transition:transform .35s}
+.book img{width:100%;height:360px;object-fit:cover;display:block;transition:transform .45s}
+.book .guide{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;background:linear-gradient(180deg,rgba(17,52,87,0.75),rgba(17,52,87,0.85))}
+.book .guide-text{transform:translateY(12px);transition:transform .35s;text-align:center;padding:14px;color:#fff}
+.book:hover img{transform:scale(1.06) rotate(-1deg)}
+.book:hover .guide{opacity:1}
+.book:hover .guide-text{transform:none}
+
+/* Shake effect on hover (subtle) */
+.book:hover{animation:shake .5s linear 1}
+@keyframes shake {
+  0%{transform:translateY(0)}
+  25%{transform:translateY(-4px) rotate(-.5deg)}
+  50%{transform:translateY(2px) rotate(.3deg)}
+  75%{transform:translateY(-2px) rotate(-.2deg)}
+  100%{transform:translateY(0)}
+}
+
+/* arrows */
+.book-arrow{background:rgba(0,0,0,0.6);color:#fff;border:0;padding:12px;border-radius:8px;cursor:pointer;font-size:24px}
+.book-arrow:hover{background:rgba(0,0,0,0.8)}
+.book-arrow.left{margin-right:6px}
+.book-arrow.right{margin-left:6px}
+
+/* hide scrollbar */
+.book-slider::-webkit-scrollbar{display:none}
+
+/* -----------------------
+   Contact / FAQ / Footer
+   ----------------------- */
+.contact-us{border-radius:12px;background:var(--card);padding:16px;box-shadow:0 12px 36px rgba(0,0,0,0.06)}
+.contact-form label{display:block;margin:8px 0 6px;font-weight:600}
+.contact-form input, .contact-form textarea{width:100%;padding:10px;border-radius:12px;border:1px solid rgba(0,0,0,0.08);margin-bottom:8px;background:transparent}
+.submit-btn{display:inline-block;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:white;padding:10px 18px;border-radius:8px;border:0;cursor:pointer}
+.form-note{font-size:.9rem;color:var(--muted);margin-top:10px}
+
+/* FAQ accordion */
+.accordion{padding:12px;margin:10px 0;background:var(--card);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);cursor:pointer}
+.accordion__question p{margin:0;font-weight:700}
+.accordion__answer{display:none;padding-top:10px;color:var(--muted)}
+
+/* Footer */
+.footer{margin-top:2rem;padding:1.2rem 0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;border-radius:12px}
+.footer .social a{margin-left:8px;color:white;padding:8px;border-radius:50%}
+.sub-footer{background:rgba(255,255,255,0.12);padding:8px;text-align:center;border-radius:8px;margin-top:12px}
+
+/* -----------------------
+   Scroll animations helpers
+   ----------------------- */
+.fade-in-up{opacity:0;transform:translateY(18px);transition:all .6s cubic-bezier(.2,.8,.2,1)}
+.fade-in-up.show{opacity:1;transform:none}
+
+/* responsive */
+@media (max-width:900px){
+  .hero-text h1{font-size:1.6rem}
+  .accordion-gallery{height:280px;flex-direction:row;gap:8px}
+  .gallery-panel{min-width:120px}
+  .book{flex:0 0 240px}
+  .book img{height:300px}
+  .mobile-nav-toggle{display:inline-block}
+  .nav-links{display:none}
+  .book-arrow{padding:10px;font-size:20px}
+}
+@media (max-width:600px){
+  .accordion-gallery{flex-direction:column;height:auto}
+  .gallery-panel{height:160px;width:100%}
+}
